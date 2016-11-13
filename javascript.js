@@ -1,8 +1,13 @@
+
+
+var currentSize = 0;
 var locations = [];
 
+
+         
 angular.module('portalApp')
 .controller('atmCtrl', ['$scope', 'locDataFactory', function ($scope, locDataFactory) {
-	
+          
     $scope.loading = locDataFactory.loading;
     $scope.locData = locDataFactory.locData;
     locDataFactory.init($scope);
@@ -19,24 +24,11 @@ angular.module('portalApp')
           for (var i in $scope.locData.atmData) {
             var data = $scope.locData.atmData[i];
             locations.push({lat: parseInt(data.latitude), lng: parseInt(data.longitude)});
-          
-            console.log(locations);
-		  }
-            
-             
-         var map = new google.maps.Map(document.getElementById('map'), {
-           zoom: 4,
-           center: locations[0]
-         });
-
-         var marker = new google.maps.Marker({
-           position: locations[0],
-           map: map
-         });
-            } else {
-                $scope.portalHelpers.toggleLoading(true);
-            }
-        });
+		  }       
+        } else {
+            $scope.portalHelpers.toggleLoading(true);
+        }
+     });
     
     
 
