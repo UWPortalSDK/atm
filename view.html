@@ -1,10 +1,29 @@
 <!-- Primary template that will get shown when widget loads -->
 <script type="text/ng-template" id="atmMain.html"> 
     
-    <widget-row ng-repeat="item in atmData.value">
+    <widget-row ng-repeat="item in locData.atmData">
         <widget-cell>
             <div>{{item.name}}</div>
             <div>{{item.note}}</div>
+            <div> latitude: {{item.latitude}} </div>
+            <div> longitude: {{item.longitude}} </div>
+        </widget-cell>
+    </widget-row>
+    
+    
+    <widget-row ng-repeat="item in locData.foodServiceData">
+        <widget-cell>
+            <div>{{item.outlet_name}}</div>
+            <div>{{item.building}}</div>
+            <div> latitude: {{item.latitude}} </div>
+            <div> longitude: {{item.longitude}} </div>
+        </widget-cell>
+    </widget-row>
+    
+    <widget-row ng-repeat="item in locData.FedData">
+        <widget-cell>
+            <div>{{item.outlet_name}}</div>
+            <div>{{item.building}}</div>
             <div> latitude: {{item.latitude}} </div>
             <div> longitude: {{item.longitude}} </div>
         </widget-cell>
