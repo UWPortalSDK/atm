@@ -1,9 +1,12 @@
+var locations = [];
+
 angular.module('portalApp')
 .controller('atmCtrl', ['$scope', 'locDataFactory', function ($scope, locDataFactory) {
 	
     $scope.loading = locDataFactory.loading;
     $scope.locData = locDataFactory.locData;
     locDataFactory.init($scope);
+   
     
 	$scope.$watch('loading.value', function () {
         // if loading
@@ -11,16 +14,29 @@ angular.module('portalApp')
             $scope.portalHelpers.showView('atmMain.html', 1);
             // show loading animation in place of menu button
             $scope.portalHelpers.toggleLoading(false);
+        	
+          console.log("Printing data");  
+          for (var i in $scope.locData.atmData) {
+            var data = $scope.locData.atmData[i];
+            locations.push({lat: parseInt(data.latitude), lng: parseInt(data.longitude)});
+          
+            console.log(locations);
+		  }
             
-            // var locations = [];
-			// locations.push({lat: item.latitude, lng: item.longitude, title: item.name});
-        	for (var i in atmData.value) {
- 			 console.log(i);
-			}
-        } else {
-            $scope.portalHelpers.toggleLoading(true);
-        }
-    });
+             
+         var map = new google.maps.Map(document.getElementById('map'), {
+           zoom: 4,
+           center: locations[0]
+         });
+
+         var marker = new google.maps.Marker({
+           position: locations[0],
+           map: map
+         });
+            } else {
+                $scope.portalHelpers.toggleLoading(true);
+            }
+        });
     
     
 
