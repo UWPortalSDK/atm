@@ -22,20 +22,33 @@
 	<wr><wc><div class="pDetails">{{detailsItem.details}}</div></wc></wr>
 </script>
 
-<div id="map"></div>
+<div id="map" style="width: 500px; height: 400px;"></div>
 <script>
+var locations = [];
+</script>
+
+<div ng-repeat="item in atmData.value">
+<script>
+locations.push({lat: item.latitude, lng: item.longitude, title: item.name});
+</script>
+</div>
+
+
+        <script>
   function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+ 
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
+          zoom: 1,
+          center: locations[0]
         });
         var marker = new google.maps.Marker({
-          position: uluru,
+          position: locations[0],
           map: map
         });
       }
 </script>
+    </widget-row>
+
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSd-W9DTEV2ND-n_D3FMUHo5GxTaRrCKU&callback=initMap">
 </script>
