@@ -1,9 +1,17 @@
+
+
+var currentSize = 0;
+var locations = [];
+
+
+         
 angular.module('portalApp')
 .controller('atmCtrl', ['$scope', 'locDataFactory', function ($scope, locDataFactory) {
-	
+          
     $scope.loading = locDataFactory.loading;
     $scope.locData = locDataFactory.locData;
     locDataFactory.init($scope);
+   
     
 	$scope.$watch('loading.value', function () {
         // if loading
@@ -11,10 +19,19 @@ angular.module('portalApp')
             $scope.portalHelpers.showView('atmMain.html', 1);
             // show loading animation in place of menu button
             $scope.portalHelpers.toggleLoading(false);
+        	
+          console.log("Printing data");  
+          for (var i in $scope.locData.atmData) {
+            var data = $scope.locData.atmData[i];
+            locations.push({lat: parseInt(data.latitude), lng: parseInt(data.longitude)});
+		  }       
         } else {
             $scope.portalHelpers.toggleLoading(true);
         }
-    });
+     });
+    
+    
+
 	
 	// Show main view in the first column as soon as controller loads
 	//$scope.portalHelpers.showView('atmMain.html', 1);
