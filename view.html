@@ -1,7 +1,7 @@
+
 <!-- Primary template that will get shown when widget loads -->
-<script type="text/ng-template" id="atmMain.html"> 
-    
-    <widget-row ng-repeat="item in atmData.value">
+<script type="text/ng-template" id="atmMain.html">   
+    <widget-row ng-repeat="item in atmData.value track by $index">
         <widget-cell>
             <div>{{item.name}}</div>
             <div>{{item.note}}</div>
@@ -22,9 +22,10 @@
 	<wr><wc><div class="pDetails">{{detailsItem.details}}</div></wc></wr>
 </script>
 
-<div id="map" style="width:100px;height:100px">
-<script>
+<div id="map" style="width:300px;height:300px">
+    <script>
   function initMap() {
+
         var uluru = {lat: -25.363, lng: 131.044};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
