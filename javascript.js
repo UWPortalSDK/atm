@@ -13,8 +13,11 @@ angular.module('portalApp')
             // show loading animation in place of menu button
             $scope.portalHelpers.toggleLoading(false);
             
-            var locations = [];
-			locations.push({lat: item.latitude, lng: item.longitude, title: item.name});
+            // var locations = [];
+			// locations.push({lat: item.latitude, lng: item.longitude, title: item.name});
+        	for (var i in atmData.value) {
+ 			 console.log(i);
+			}
         } else {
             $scope.portalHelpers.toggleLoading(true);
         }
