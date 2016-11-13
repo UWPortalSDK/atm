@@ -12,10 +12,16 @@ angular.module('portalApp')
             $scope.portalHelpers.showView('atmMain.html', 1);
             // show loading animation in place of menu button
             $scope.portalHelpers.toggleLoading(false);
+            
+            var locations = [];
+			locations.push({lat: item.latitude, lng: item.longitude, title: item.name});
         } else {
             $scope.portalHelpers.toggleLoading(true);
         }
     });
+    
+    
+
 	
 	// Show main view in the first column as soon as controller loads
 	//$scope.portalHelpers.showView('atmMain.html', 1);
