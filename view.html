@@ -1,7 +1,7 @@
 <!-- Primary template that will get shown when widget loads -->
 <script type="text/ng-template" id="atmMain.html"> 
     
-    <widget-row ng-repeat="item in locData.atmData">
+<!--     <widget-row ng-repeat="item in locData.atmData">
         <widget-cell>
             <div>{{item.name}}</div>
             <div>{{item.note}}</div>
@@ -27,7 +27,7 @@
             <div> latitude: {{item.latitude}} </div>
             <div> longitude: {{item.longitude}} </div>
         </widget-cell>
-    </widget-row>
+    </widget-row> -->
 
 </script>
 
@@ -44,22 +44,25 @@
 <div id="map" style="width: 500px; height: 400px;"></div>
 <script>
  function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+        var myLatLng = {lat: 43.469167, lng: -80.538497};
     
-    	setInterval(function() {
-    		
-  		
+    	setTimeout(function() {
             var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 4,
+              zoom: 15,
               center: myLatLng
             });
-
-            var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map,
-              title: 'Hello World!'
-            });
-		}, 5000);
+			
+    		for ( var i in locations ) {
+    			var latlng = locations[i];
+    			var marker =  new google.maps.Marker({
+              		position: locations[i],
+              		map: map,
+              		title: 'Hello World!'
+            	});
+    
+    			console.log("The latitude is " + latlng.lat);
+    		}
+		}, 10000);
       }
 </script>
 

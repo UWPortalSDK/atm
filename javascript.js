@@ -23,7 +23,7 @@ angular.module('portalApp')
           console.log("Printing data");  
           for (var i in $scope.locData.atmData) {
             var data = $scope.locData.atmData[i];
-            locations.push({lat: parseInt(data.latitude), lng: parseInt(data.longitude)});
+            locations.push({lat: parseFloat(data.latitude), lng: parseFloat(data.longitude)});
 		  }       
         } else {
             $scope.portalHelpers.toggleLoading(true);
